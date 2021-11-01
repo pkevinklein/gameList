@@ -27,7 +27,10 @@ export default class App extends Component {
       <div className="ui container" style={{ marginTop: "10px" }}>
         App here
         <SearchBar greeting="hello" onSubmit={this.onSearchSubmit} />
-        <GamesList gameslist={this.state.searchedGames} />
+        <GamesList
+          initialGameList={this.state.games}
+          searchedList={this.state.searchedGames}
+        />
       </div>
     );
   }
