@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
-import GamesList from "./GamesList";
+import GameList from "./GameList";
 
 export default class App extends Component {
   state = { games: [], searchedGames: [] };
@@ -25,9 +25,8 @@ export default class App extends Component {
   render() {
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
-        App here
         <SearchBar greeting="hello" onSubmit={this.onSearchSubmit} />
-        <GamesList
+        <GameList
           initialGameList={this.state.games}
           searchedList={this.state.searchedGames}
         />
