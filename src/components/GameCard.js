@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Header, Image, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import GameModal from "./GameModal";
 
 export default class GameCard extends Component {

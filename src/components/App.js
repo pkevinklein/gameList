@@ -8,8 +8,9 @@ export default class App extends Component {
 
   componentDidMount() {
     axios
-      .get("https://www.freetogame.com/api/games")
+      .get("/games")
       .then((response) => {
+        console.log(response);
         this.setState({ games: response.data });
       })
       .catch((err) => console.log("API request error: ", err));
