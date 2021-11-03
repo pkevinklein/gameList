@@ -10,7 +10,7 @@ export default class App extends Component {
     axios
       .get("/games")
       .then((response) => {
-        console.log(response);
+        console.log("api response here: ", response);
         this.setState({ games: response.data });
       })
       .catch((err) => console.log("API request error: ", err));
@@ -24,6 +24,7 @@ export default class App extends Component {
   };
 
   render() {
+    console.log(this.state.games);
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
         <SearchBar greeting="hello" onSubmit={this.onSearchSubmit} />
