@@ -12,7 +12,7 @@ export default class GameCard extends Component {
           <Grid.Column textAlign="center">
             <img alt={short_description} src={thumbnail} />
             <div className="description">{short_description}</div>
-            <GameModal game={this.props.game} />
+            <GameModal onClick={this.getSpecificGame} game={this.props.game} />
           </Grid.Column>
         </Grid>
       </div>

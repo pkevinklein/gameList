@@ -5,15 +5,16 @@ import GameList from "./GameList";
 
 export default class App extends Component {
   state = { games: [], searchedGames: [] };
-
-  componentDidMount() {
-    axios
+  getAllGames = async () => {
+    await axios
       .get("/games")
       .then((response) => {
-        console.log("api response here: ", response);
-        this.setState({ games: response.data });
+        this.setState({ games: response.data.slice(0, 20) });
       })
       .catch((err) => console.log("API request error: ", err));
+  };
+  componentDidMount() {
+    this.getAllGames();
   }
 
   onSearchSubmit = (term) => {
@@ -24,7 +25,6 @@ export default class App extends Component {
   };
 
   render() {
-    console.log(this.state.games);
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
         <SearchBar greeting="hello" onSubmit={this.onSearchSubmit} />

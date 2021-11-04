@@ -9,7 +9,6 @@ export default class GameList extends Component {
     });
   }
   render() {
-    console.log(this.props);
     return (
       <div>
         <h2>Games</h2>
