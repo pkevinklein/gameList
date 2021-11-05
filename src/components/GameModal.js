@@ -1,12 +1,19 @@
 import React from "react";
-import { Button, Header, Image, Modal } from "semantic-ui-react";
+import { Button, Header, Modal } from "semantic-ui-react";
 import ImageCarousel from "./ImageCarousel";
 import axios from "axios";
 
 function GameModal(props) {
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState([]);
-
+  React.useEffect(() => {
+    axios
+      .get(`/game?id=${props.game.id}`)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((err) => console.log("get game by id error", err));
+  }, []);
   const {
     thumbnail,
     title,
@@ -21,30 +28,15 @@ function GameModal(props) {
     id,
   } = data;
 
-  const getSpecificGame = async () => {
-    await axios
-      .get(`/game?id=${props.game.id}`)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((err) => console.log("get game by id error", err));
-  };
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={
-        // <Button onClick={getSpecificGame} className="ui">
-        <Button className="ui" onClick={getSpecificGame}>
-          Show More
-        </Button>
-      }
+      trigger={<Button className="ui">Show More</Button>}
     >
       <Modal.Header>{title}</Modal.Header>
       <Modal.Content image>
-        <ImageCarousel screenshots={screenshots} size="large" wrapped />
-        {/* <Image size="large" src={thumbnail} wrapped /> */}
         <Modal.Description>
           <Header>Game description</Header>
           <p className="description">
@@ -63,6 +55,8 @@ function GameModal(props) {
           <p>
             <b>Developer:</b> {developer}
           </p>
+          <ImageCarousel screenshots={screenshots} size="large" wrapped />
+          {/* <Image size="large" src={thumbnail} wrapped /> */}
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

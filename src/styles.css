@@ -9,3 +9,30 @@
   justify-content: center;
   align-items: center;
 }
+.shadow-pop-br {
+  -webkit-animation: shadow-pop-br 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+  animation: shadow-pop-br 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+}
+
+@-webkit-keyframes shadow-pop-br {
+  0% {
+    box-shadow: 0 0 red, 0 0 red, 0 0 red, 0 0 red, 0 0 red, 0 0 red, 0 0 red,
+      0 0 red;
+    -webkit-transform: translateX(0) translateY(0);
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    box-shadow: 1px 1px red, 2px 2px red, 3px 3px red, 4px 4px red, 5px 5px red,
+      6px 6px red, 3px 3px red, 8px 8px red;
+    -webkit-transform: translateX(-8px) translateY(-8px);
+    transform: translateX(-8px) translateY(-8px);
+  }
+}
+
+image-hover > .game-list {
+  position: relative;
+  animation: shadow-pop-br;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  background-image: none;
+}
